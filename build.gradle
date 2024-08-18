@@ -22,6 +22,12 @@ dependencies {
     // end::tests[]
 }
 
+jar {
+    archiveBaseName = 'govindsamplejar'
+    archiveVersion = '1.0.0'
+    enabled = false
+}
+
 test {
     useJUnitPlatform()
 }

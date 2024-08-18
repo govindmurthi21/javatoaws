@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: govindapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: govindapp
+  template:
+    metadata:
+      labels:
+        app: govindapp
+    spec:
+      containers:
+        - name: govindapp
+          image: 528363340321.dkr.ecr.us-east-1.amazonaws.com/govind-eks:latest
+          ports:
+            - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: govindapp-service
+spec:
+  selector:
+    app: govindapp
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: LoadBalancer
